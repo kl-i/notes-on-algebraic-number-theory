@@ -1,0 +1,175 @@
+\documentclass[./main.tex]{subfiles}
+\begin{document}
+  
+\begin{rmk}[Results of this section]~
+  
+  \begin{itemize}
+    \item Basic Properties of Trace and Norm
+    \item Trace Characterisation of Finite Separable Extensions
+    \item (Main) Integral Closure of Dedekind Domain in Finite 
+    Extension is Dedekind. 
+  \end{itemize}
+
+  I reluctantly wrote about the trace and norm
+  since it looks like ANT cannot theoretically do without them,  
+  but I still do not have geometric intuition for them. 
+\end{rmk}
+
+\begin{prop}[Trace Characterisation of Finite Separable Extensions]
+  
+  Let $K \to L$ be a finite extension.
+  Then it is separable if and only if 
+  the bilinear form $L \times L \to K, \al,\be \to \tr (\al \be)$
+  is non-degenerate. 
+\end{prop}
+\begin{proof}(From Janusz) Don't want to think about trivial case of $K = L$,
+  so we assume $K \to L$ is a non-trivial extension.
+
+  $(\implies)$
+  We use a clever $K$-basis of $L$ to link 
+  the determinant of the trace form and separability of $L$ over $K$.
+  The clever basis is : 
+  let $L = K \oplus K\theta \oplus \cdots \oplus K\theta^{[L:K]-1}$
+  by the primitive element theorem so that 
+  given a finite Galois extension $K \to \Om$ 
+  with $K\ALG(L,\Om) = \set{\si_1,\dots,\si_{[L:K]}} \neq \nothing$,
+  it suffices 
+  \[
+    \det \sqbrkt{\tr_{L/K}(\theta^{i-1}\theta^{j-1})}
+    = \prod_{i < j} \brkt{\si_i(\theta) - \si_j(\theta)}^2
+  \]
+  since the latter is non-zero by separability of $L$ over $K$.
+
+  So let $K \to \Om$ be a finite Galois extension
+  with $K\ALG(L,\Om) = \set{\si_1,\dots,\si_{[L:K]}} \neq \nothing$.
+  Then we have the algebraic trick called the Vandermonde matrix : 
+  \[
+    \det \begin{bmatrix}
+      1 & &                         1                       \\
+      \si_1(\theta) & &             \si_{[L:K]}(\theta)           \\
+      \vdots & \cdots &             \vdots       \\
+      \si_1(\theta)^{[L:K] - 1} & & \si_{[L:K]}(\theta)^{[L:K] - 1}
+    \end{bmatrix}
+    = \prod_{i < j} \brkt{\si_i(\theta) - \si_j(\theta)}
+  \]
+  So it suffices that $\sqbrkt{\tr_{L/K}(\theta^{i-1}\theta^{j-1})} = VV^t$.
+  We have \[
+    [VV^t]_{i,j} = \dsum{k}{} \si_k(\theta^{i - 1})\si_k(\theta^{j-1})
+    = \dsum{k}{} \si_k(\theta^{i - 1}\theta^{j-1})
+  \]
+  So it suffices that for any $\theta^l$, 
+  the trace $\tr_{L/K}(\theta^l) = \dsum{k}{} \si_k(\theta^l)$ in $\Om$.
+  To see this for $l = 1$, 
+  note that $\ch(\theta,K) = \min(\theta,K)$ since 
+  the former has $\theta$ as a root and has the same degree as the latter.
+  To get arbitrary $l$, 
+  note that $\ch(\theta,K) = \min(\theta,K)$ separable implies 
+  $[\theta]$ is diagonalisable in $\Om$ with eigenvalues 
+  $\si_1(\theta),\dots,\si_{[L:K]}(\theta)$.
+  It follows that $[\theta^l]$ is diagonalisable in $\Om$ as well,
+  with eigenvalues $\si_1(\theta^l),\dots,\si_{[L:K]}(\theta^l)$.
+
+  $(\limplies)$
+  Suppose $L$ is inseparable over $K$,
+  so we have characteristic of $K$ being some prime $p > 0$,
+  $K \to L_S \to L$ where $K \to L_S$ is separable and 
+  $L_S \to L$ is purely inseparable with degree $p^N$ for some $N > 0$.
+  We need to give an $x \in L$ such that 
+  for all $y \in L$, $\tr_{L/K}(xy) = 0$ but $x \neq 0$.
+  By assumption, we have an $x \in L \minus L_S$.
+  Then for $y \in L$, $\tr_{L/K}(xy) = \tr_{L_S/K}\brkt{\tr_{L/L_S}(xy)}$
+  so it suffices $\tr_{L/L_S}(xy) = 0$.
+  Well, if $xy \in L_S$, 
+  then $\tr_{L/L_S}(xy) = p^N xy = 0$.
+  If $xy \notin L_S$, 
+  then there exists $n > 0$ such that $\min(xy,L_S) = T^{p^n} - a$
+  for some $a \in L_S$.
+  By working in an extension $L \to \Om$ where $\ch(xy,L_S)$ splits,
+  one sees that $\ch(xy,L_S)(T) = (T - xy)^{p^N}$ in $\Om$,
+  and so $\ch(xy,L_S)(T) = (T^{p^n} - a)^{p^{N-n}}$,
+  which implies $\tr_{L/L_S}(xy) = 0$ again. 
+  
+\end{proof}
+
+\begin{prop}[Integral Closure of Dedekind Domain in Finite Extension]
+  
+  Let $A$ be a Dedekind domain, 
+  $K$ its field of fractions,
+  $K \to L$ a finite extension of fields,
+  $B$ the integral closure of $A$ in $L$.
+  Then $B$ is a Dedekind domain. 
+\end{prop}
+\begin{proof}(Milne, Janusz combined)
+  
+  \textit{(Integrally closed)} Transitivity of being integral over a base ring.
+
+  \textit{(Dimension 1)}
+  Let $q \in \spec B$ be non-generic and $\pi : \spec B \to \spec A$
+  the adjunct of $A \to B$. 
+  Let $p = \pi(q)$.
+  Then $0 \to A/I(p) \to B/I(q)$ is an integral extension of integral domains.
+  \begin{lem}
+    For $A \subs B$ ID where $B$ is integral over $A$,
+    $B$ is a field if and only if $A$ is.
+    \begin{proof1}
+      Atiyah. The argument is elementary. 
+    \end{proof1}
+  \end{lem}
+  So it suffices to prove $p$ is not the generic point of $\spec A$.
+  Well, there exists $f \in B\minus 0$ that vanishes at $q$.
+  Since $B$ integral over $A$, $f^n + a_1 f^{n - 1} + \cdots + a_0 = 0$
+  for some $a_k \in A$.
+  Let $n$ be minimal. Then $0 \neq a_0 \in I(p)$.
+
+  \textit{(Noetherian)}
+  We have the decomposition $K \to L_{sep} \to L$ where 
+  $K \to L_{sep}$ is separable and $L_{sep} \to L$ is purely inseparable. 
+  We hence also have a decomposition $A \to A_{sep} \to B$
+  where $A_{sep}$ be the integral closure of $A$ in $L_{sep}$
+  and it follows that $B$ is the integral closure of $A_{sep}$ in $L$.
+  It thus suffices that $B$ is Noetherian over $A_{sep}$ and 
+  $A_{sep}$ is Noetherian over $A$.
+
+  We first prove $A_{sep}$ Noetherian over $A$ by 
+  proving a more detailed lemma
+  which gives us extra data for the example of algebraic integers. 
+  \begin{lem}
+    Let $A$ be an integrally closed domain, 
+    $K \to L$ a finite separable field extension where 
+    $K$ is the fraction field of $A$ and 
+    $B$ the integral closure of $A$ in $L$.
+    Then there exists free sub-$A$-modules $M, M_1 \subs L$ with rank $[L:K]$
+    such that $M \subs B \subs M_1$.
+    
+    In particular, $A$ Noetherian implies $B$ is Noetherian. 
+    Also, $A$ PID implies $B$ is also a free $A$-module with rank $[L:K]$.
+
+    \begin{proof1}
+      Let $L = K\be_1 \oplus \cdots \oplus K\be_{[L:K]}$.
+      For any $x \in L$, there exists $a \in A\minus 0$ such that $ax \in B$. 
+      So we can WLOG assume $\be_1,\dots,\be_{[L:K]} \in B$.
+      Set $M := A\be_1 + \cdots + A\be_{[L:K]}$.
+      Since $K \to L$ is finite separable, 
+      non-degeneracy of the trace form gives another $K$-basis 
+      $\be_1',\dots,\be_{[L:K]}'$ of $L$ that is 
+      dual to the previous basis with respect to the trace form,
+      i.e. $\tr_{L/K}(\be_i \be'_j) = \de_{i,j}$.
+      Let $M_1 := A\be'_1 + \cdots + A\be'_{[L:K]}$.
+      It remains to show $B \subs M_1$.
+      Let $b \in B$. Then $b = \dsum{i}{} \la_i \be'_i$ for some $\la_i \in K$.
+      Then $
+        \la_j = \tr_{L/K}(b \be_j) \in \tr_{L/K} B \subs A
+      $ by the two bases being dual w.r.t. the trace form. 
+    \end{proof1}
+  \end{lem}
+  So we have $A_{sep}$ is a Dedekind domain. 
+
+  Now we prove $B$ is Noetherian over $A_{sep}$.
+  According to Janusz, this is quite hard so 
+  we directly show $B$ is Dedekind by showing 
+  all non-zero functions have finite vanishing and 
+  all stalks are DVRs. TODO.
+
+\end{proof}
+
+\end{document}

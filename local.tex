@@ -1,0 +1,75 @@
+\documentclass[./main.tex]{subfiles}
+\begin{document}
+  
+\begin{dfn}[Noetherian, Integral, Krull Dimension]
+
+  Let $X \in \AFF$ be an affine scheme. 
+  \begin{itemize}
+    \item $X$ is called \emph{Noetherian} when 
+    any of the following equivalent conditions are met : 
+    \begin{enumerate}
+      \item $\OO_X(X)$ is Noetherian.
+      \item for all opens $U \subs X$, $\OO_X(U)$ Noetherian.
+      \item there exists an open cover $\UU$ of $X$ such that 
+      for all $U \in \UU$, $\OO_X(U)$ Noetherian. 
+    \end{enumerate}
+    \item $X$ is called \emph{integral} when 
+    any of the following equivalent conditions are met : 
+    \begin{enumerate}
+      \item $\OO_X(X)$ is an integral domain.
+      \item the underlying topological space of $X$ is irreducible and 
+      $X$ is reduced. 
+    \end{enumerate}
+    \item $\dim X := $ Krull dimension of $\OO_X(X)$. 
+    $X$ is called a \emph{curve} when $\dim X = 1$.
+    \item Call $X$ \emph{local}\footnote{
+      I made this up. 
+    } when 
+    any of the following equivalent definitions are met : 
+    \begin{enumerate}
+      \item $X$ has a unique closed point.
+      \item $\OO_X(X)$ is a local ring. 
+    \end{enumerate}
+    \item Let $X$ be integral. 
+    Then $X$ is \emph{integrally closed} when 
+    any of the following equivalent definitions are met : 
+    \begin{enumerate}
+      \item $\OO_X(X)$ is integrally closed.
+      \item For all points $x \in X$, $[\OO_X]_x$ is integrally closed.
+      \item For all closed points $x \in X$, $[\OO_X]_x$ is integrally closed.
+    \end{enumerate}
+  \end{itemize}
+\end{dfn}
+
+\begin{rmk}
+  Still no geometric intuition for integrally closed. 
+\end{rmk}
+
+\begin{prop}[Characterisation of DVRs]
+
+  Let $X \in \AFF$ be a local Noetherian integral curve. 
+  Let $p$ be its unique closed point and $\ka(p)$ its residue field. 
+  Let $K := [\OO_X]_{p_X}$ where $p_X$ is the unique generic point of $X$,
+  i.e. $K = \mathrm{Frac}\, \OO_X(X)$.
+  Then TFAE : 
+  \begin{enumerate}
+    \item There exists a valuation $v : K^\times \to \Z$ with 
+    $\OO_X(X)$ as its valuation ring. 
+    \item $\OO_X(X)$ is integrally closed. 
+    \item $\ker\ev_{p}$ is principal. 
+    \item $\dim_{\ka(p)} T_{p}^* X = 1$,
+    i.e. $X$ is smooth. 
+    \item The only ideals of $\OO_X(X)$ are $(0)$ and powers of $I(p)$.
+    That is to say,
+    the only closed subschemes of $X$ are $X$ and 
+    the infinitesimal neighbourhoods of $p$.
+    \item There exists $f \in \OO_X(X)$ such that 
+    all non-zero ideals of $\OO_X(X)$ are of the form 
+    $(f^k)$ for some $k \in \N$.
+  \end{enumerate}
+  $\OO_X(X)$ is called a \emph{discrete valuation ring} when 
+  any (and thus all) of the above are satisfied. 
+
+\end{prop}
+
+\end{document}

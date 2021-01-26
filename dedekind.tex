@@ -1,0 +1,119 @@
+\documentclass[./main.tex]{subfiles}
+\begin{document}
+  
+\begin{prop}[Characterisation of Dedekind Domains]
+  
+  Let $X \in \AFF$ be integral but not a point.
+  Then TFAE :
+  \begin{enumerate}
+    \item All non-zero $f \in \OO_X(X)$ vanish at finitely many points and 
+    for all points $p \in X$, $[\OO_X]_p$ DVR.
+    \item $X$ is a Noetherian, integrally closed curve.
+    \item $X$ is Noetherian curve and all primary ideals of $\OO_X(X)$
+    is a power of a prime ideal. 
+    \item $X$ is a curve and for all non-zero ideals $I \ssubs \OO_X(X)$,
+    $I$ factorises into powers of prime ideals. 
+    i.e. All closed subschemes of $X$ look like 
+    finitely many infinitesimal neighbourhoods of points. 
+  \end{enumerate}
+  $\OO_X(X)$ is called a \emph{Dedekind domain} when 
+  any (and thus all) of the above are satisfied.
+
+  Furthermore, the factorisation in $(4)$ turns out to be unique.
+
+\end{prop}
+\begin{proof}
+  $(1\implies 2)$ 
+  $X$ integrally closed since being integrally closed is a stalk-local property.
+  Stalk-local dimension 1 also easily implies global dimension 1. 
+  It remains to prove Noetherian. 
+
+  Let $0 \neq I$ be an ideal of $\OO(X)$.
+  The unit case is clear so let $I \neq (1)$.
+  There exists $0 \neq f \in I$. 
+  The key is that $V(I) \subs V(f)$ which is finite and 
+  at the stalks of each $p \in V(f)$, $I_p = g_p A_p$ for some $g_p \in I_p$.
+  WLOG each $g_p$ comes from $I$. 
+  The claim is that $I = Af + \dsum{p \in V(f)}{} Ag_p$.
+  It suffices to check stalk-locally.
+  This is clear by doing cases on $p \in V(f)$ or not. 
+
+  $(2 \implies 3)$ 
+  Let $I$ be a primary ideal of $\OO_X(X)$.
+  Since $X$ is a curve, 
+  $V(I) = \bar{\set{p}} = \set{p}$ for some closed point $p \in X$.
+  It is straightforward to show that $[\OO_X]_p$ is a Noetherian, 
+  integrally closed, integral domain and hence a DVR.
+  So there exists $N \in \N$, $I(p)^N_p = I_p$.
+  It suffices to show $I(p)^N = I$.
+  It suffices that for all points $q \in X$, $(I/I(p)^N)_q = 0$. 
+  But since $X$ is a curve and $\supp A/I = V(I) = \set{p}$, 
+  it suffices to check for the point $p$, which we have already. 
+
+  $(3 \implies 4)$
+  $\OO_X(X)$ Noetherian implies all non-zero proper ideals 
+  have a primary decomposition. 
+  By assumption and $X$ being a curve, 
+  primary ideals are powers of maximal ideals. 
+  Since powers of distinct maximal ideals are comaximal, 
+  a primary decomposition is the same as a factorisation into prime powers.
+
+  $(4 \implies 1)$
+  % Primary ideals being powers of primes is easy. 
+  % Now, Noetherian. 
+  % Let $I_0 \subs I_1 \subs \cdots$ be 
+  % an ascending chain of ideals in $\OO_X(X)$.
+  % Let $I_0 = I(p_1)^{n_1}\cdots I(p_k)^{n_k}, 
+  % I_1 = I(q_1)^{m_1} \cdots I(q_l)^{m_l}$
+  % be prime factorisations.
+  % Then by prime avoidance and $X$ being a curve, 
+  % we can WLOG assume $I_1 = I(p_1)^{n_1(1)} \cdots I(p_k)^{n_k(1)}$.
+  % By induction, we can assume for all $M \in \N$, 
+  % $I_M = I(p_1)^{n_1(M)}\cdots I(p_k)^{n_k(M)}$.
+  % To show this ascending chain of ideals stabilises,
+  % it suffices to show that all powers $n_i(M) \geq n_i(M+1)$ 
+  % are decreasing. 
+  % Let $M \in \N$.
+  % Since $X$ is a curve, 
+  % the prime powers $I(p_1)^{n_1(M)},\dots, I(p_k)^{n_k(M)}$ are comaximal, 
+  % so by the Chinese Remainder theorem, we have 
+  % \[
+  %   \OO_X(X)/I_M \iso \frac{\OO_X(X)}{I(p_1)^{n_1(M)}}\times \cdots \times
+  %   \frac{\OO_X(X)}{I(p_k)^{n_k(M)}}
+  % \]
+  % In each component $\OO_X(X)/I(p_i)^{n_i(M)}$,
+  % there is a unique prime ideal.
+  % It follows from the existence of factorisation into primes in $\OO_X(X)$ that 
+  % the only ideals in $\OO_X(X)/I(p_i)^{n_i(M)}$ are 
+  % $1, I(p_i), \dots, I(p_i)^{n_i(M) - 1}, I(p_i)^{n_i(M)}$.
+  % Mapping $I_{M+1}$ into the quotient by $I_M$,
+  % in each component we get $I(p_i)^{n_i(M+1)} = I(p_i)^{m_i}$
+  % where $n_i(M) \geq m_i = n_i(M+1)$ as desired. 
+  Non-zero global functions $f$ vanish at finitely many points 
+  because all closed subschemes contain only finitely many points. 
+  Now let $p \in X$ be a closed point.
+  It is clear that $[\OO_X]_p$ is local and dimension 1.
+  We show that non-zero proper ideals of $[\OO_X]_p$ are powers of $I(p)_p$,
+  which proves $[\OO_X]_p$ is not only Noetherian but also a DVR.
+  Well, any non-zero ideal of $[\OO_X]_p$ must be of the form 
+  $I_p$ for some non-zero proper ideal $I$ of $\OO_X(X)$.
+  But $I$ factorises into prime powers and since $X$ is a curve,
+  going to the stalk over $p$ inverts any factors that aren't powers of $I(p)$,
+  so $I_p$ is a power of $I(p)_p$.
+
+  \textit{(uniqueness of the factorisation)}
+  Note that the primes occuring in any factorisation of an ideal $I$
+  corresponds to the points in $V(I)$,
+  so it suffices to check uniqueness of powers. 
+  Let $I(p_1)^{n_1} \cdots I(p_k)^{n_k} = I(p_1)^{m_1} \cdots I(p_k)^{m_k}$
+  where $p_1, \dots, p_k$ are distinct points. 
+  Since $X$ is a curve, 
+  we can apply chinese remainder theorem to quotienting out 
+  $I(p_1)^{n_1} \cdots I(p_k)^{n_k}$ and realise 
+  the only ideals in each component are the prime powers.
+  The isomorphism given by CRT preserves powers of ideals,
+  to we must have $m_1 = n_1, \dots, m_k = n_k$. 
+
+\end{proof}
+
+\end{document}
